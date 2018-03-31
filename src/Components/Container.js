@@ -3,22 +3,26 @@ import update from 'immutability-helper';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './Card';
+import PlayerStats from './PlayerStats';
 
 const style = {
     width: 200,
     display: 'inline-block'
 };
 
+
 class Container extends Component {
     constructor(props) {
         super(props);
         this.moveCard = this.moveCard.bind(this);
         this.state = {
-            cards: this.props.cards,
+            cards: []
         }
-        console.log(this.state.cards);
     }
 
+    componentWillReceiveProps(){
+        this.setState({cards: this.props.cards})
+    }
 
     moveCard(dragIndex, hoverIndex) {
         const {cards} = this.state;
@@ -33,18 +37,23 @@ class Container extends Component {
         )
     }
 
-    render() {
-        const {cards} = this.state;
+    addNewCard = (cardInfo) =>{
+        this.setState(prevState => ({
+            cards: prevState.cards.concat(cardInfo),
+        }));
+    };
 
+    render() {
         return (
             <div>
-                {cards.map((card, i) => (
+                <PlayerStats onSubmit={this.addNewCard}/>
+                {this.state.cards.map((card, i) => (
                     <div style={style}>
                         <Card
-                            key={card.id}
+                            id={card.steamID}
+                            key={card.steamID}
+                            {...card}
                             index={i}
-                            id={card.id}
-                            text={card.text}
                             moveCard={this.moveCard}
                         />
                     </div>
