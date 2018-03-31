@@ -9,16 +9,15 @@ const PlayerStatsCard = (props) =>{
         <div className="player-info" style={{textAlign: 'left', margin: '1em'}}>
             <img src={props.avatar}/>
             <div style={{display: 'inline-block', marginLeft: 10}}>
-                <div className="player-nickname" style={{fontSize: '1.25em', fontWeight: 'bold'}}>{props[0]}</div>
-                <div className="player-nationality">{props.playerNationality}</div>
+                <div className="player-nickname" style={{fontSize: '1.25em', fontWeight: 'bold'}}>{props.nickname}</div>
             </div>
-            <div style={{display: 'inline-block', marginLeft: 10}}>
-                <h3>Total kills: {props.totalKills}</h3>
-                <h3>Total deaths: {props.totalDeaths}</h3>
-                <h3>Total time played: {props.totalTimePlayed}</h3>
-                <h3>Total matches played: {props.totalMatchesPlayed}</h3>
-                <h3>Total wins: {props.totalWins}</h3>
-                <h3>Total MVPs: {props.totalMvps}</h3>
+            <div style={{marginLeft: 10}}>
+                <h4>Total kills: {props.totalKills}</h4>
+                <h4>Total deaths: {props.totalDeaths}</h4>
+                <h4>Total time played: {props.totalTime}</h4>
+                <h4>Total matches played: {props.totalMatches}</h4>
+                <h4>Total wins: {props.totalWins}</h4>
+                <h4>Total MVPs: {props.totalMvps}</h4>
             </div>
         </div>
 
@@ -26,10 +25,9 @@ const PlayerStatsCard = (props) =>{
 };
 
 const CardList = (props) =>{
-     // console.log(props);
     return(
         <div>
-            {props.cards.map(card=><PlayerStatsCard key={card[0]} {...card}/>)}
+            {props.cards.map(card=><PlayerStatsCard key={card.steamID} {...card}/>)}
         </div>
     );
 };
@@ -41,9 +39,8 @@ class App extends Component {
     };
 
     addNewCard = (cardInfo) =>{
-        console.log(cardInfo);
         this.setState(prevState => ({
-            cards: prevState.cards.push(cardInfo),
+            cards: prevState.cards.concat(cardInfo),
         }));
     };
 
@@ -56,8 +53,8 @@ class App extends Component {
         </header>
           <br/>
           <PlayerStats onSubmit={this.addNewCard}/>
-          {/*<CardList cards={this.state.cards}/>*/}
-          {/*<Container cards={this.state.cards}/>*/}
+          <CardList cards={this.state.cards}/>
+          <Container cards={this.state.cards}/>
       </div>
     );
   }
