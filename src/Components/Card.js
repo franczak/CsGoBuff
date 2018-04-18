@@ -5,7 +5,8 @@ import { DragSource, DropTarget } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 
 const style = {
-    border: '1px dashed gray',
+    border: '2px solid red',
+    borderRadius: '10px',
     padding: '1rem 0.5rem',
     marginBottom: '.5rem',
     marginLeft: '.5rem',
@@ -128,11 +129,12 @@ class Card extends Component {
 
         return connectDragSource(
             connectDropTarget(<div style={{ ...style, opacity }}>
-                <img src={avatar}/>
+                <img src={avatar} style={{borderRadius: 10}}/>
+		<br/>
                 <div style={{display: 'inline-block', marginLeft: 10}}>
                     <div className="player-nickname" style={{fontSize: '1.25em', fontWeight: 'bold'}}>{nickname}</div>
                 </div>
-                <div style={{marginLeft: 10}}>
+                <div style={{textAlign: 'justify', marginLeft: 10}}>
                     Total kills: {totalKills}<br/>
                     Total deaths: {totalDeaths}<br/>
                     Total time: {totalTime}<br/>

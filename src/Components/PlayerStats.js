@@ -52,13 +52,14 @@ class PlayerStats extends Component {
 
     render() {
         return (
-            <div className="col-2">
+            <div className="col">
                 <form onSubmit={this.handleSubmit}>
                     <input type="text"
+                           style={{height:30 , width: 300}}
                            value={this.state.steamID}
                            onChange={(e) => this.setState({steamID: e.target.value})}
                            placeholder="Player steamid" required/>
-                    <Button color="primary" type="submit">Check player</Button>
+                         <Button color="danger" type="submit" style={{height: 30, marginBottom: 5, paddingTop: 2}}>Add</Button>
                 </form>
             </div>
         );

@@ -20,10 +20,6 @@ class Container extends Component {
         }
     }
 
-    componentWillReceiveProps(){
-        this.setState({cards: this.props.cards})
-    }
-
     moveCard(dragIndex, hoverIndex) {
         const {cards} = this.state;
         const dragCard = cards[dragIndex];
@@ -38,9 +34,11 @@ class Container extends Component {
     }
 
     addNewCard = (cardInfo) =>{
+      if(this.state.cards.length<3){;
         this.setState(prevState => ({
             cards: prevState.cards.concat(cardInfo),
-        }));
+        }))
+      }
     };
 
     render() {
@@ -59,11 +57,9 @@ class Container extends Component {
                     </div>
                 ))}
 
-
             </div>
         )
     }
 }
 
 export default DragDropContext(HTML5Backend)(Container);
-
