@@ -21,5 +21,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://cs-go-buff.herokuapp.com"
+  "proxy": {
+    "/authenticate": {
+      "target": "https://cs-go-buff.herokuapp.com"
+    }
+  }
 }
