@@ -9,7 +9,7 @@ export default class LoginButton extends Component {
     render() {
         return(
             <div>
-                <a href={'/authenticate'}>
+                <a href={'https://cs-go-buff.herokuapp.com/authenticate'}>
                     <img src={'https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'} />
                 </a>
             </div>
