@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Container from './Components/CardContainer';
+import LoginButton from "./Components/LoginButton/index";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         </header>
           <br/>
           <Container/>
+          <LoginButton />
       </div>
     );
   }
