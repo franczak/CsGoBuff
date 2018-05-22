@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^4.0.0",
+    "dotenv": "^5.0.1",
     "immutability-helper": "^2.6.6",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -21,10 +22,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "proxy": {
-    "/authenticate": {
-      "target": "https://cs-go-buff.herokuapp.com"
-    }
   }
 }
