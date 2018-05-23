@@ -13,7 +13,7 @@ class PlayerStats extends Component {
 
         e.preventDefault();
         let player = {steamID:'',nickname:'',avatar:'',totalKills:'',totalDeaths:'',totalTime:'',totalMatches:'',totalWins:'',totalMvps:''};
-        axios.get(`https://cs-go-buff.herokuapp.com/${this.state.steamID}`,{withCredentials: true}).then(resp => {
+        axios.get(`https://cs-go-buff.herokuapp.com/details/${this.state.steamID}`,{withCredentials: true}).then(resp => {
             player.steamID = resp.data.response.players[0].steamid;
             player.nickname = resp.data.response.players[0].personaname;
             player.avatar = resp.data.response.players[0].avatarmedium;
