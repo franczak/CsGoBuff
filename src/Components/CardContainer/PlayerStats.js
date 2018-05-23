@@ -13,11 +13,11 @@ class PlayerStats extends Component {
 
         e.preventDefault();
         let player = {steamID:'',nickname:'',avatar:'',totalKills:'',totalDeaths:'',totalTime:'',totalMatches:'',totalWins:'',totalMvps:''};
-        axios.get(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=FD560E373D2C77AAB1E0044788A18A64&steamids=${this.state.steamID}`).then(resp => {
+        axios.get(`https://cs-go-buff.herokuapp.com/${this.state.steamID}`,{withCredentials: true}).then(resp => {
             player.steamID = resp.data.response.players[0].steamid;
             player.nickname = resp.data.response.players[0].personaname;
             player.avatar = resp.data.response.players[0].avatarmedium;
-            axios.get(`http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=FD560E373D2C77AAB1E0044788A18A64&steamid=${this.state.steamID}`).then(resp => {
+            axios.get(`https://cs-go-buff.herokuapp.com/stats/${this.state.steamID}`, {withCredentials: true}).then(resp => {
                 for (let i = 0; i < resp.data.playerstats.stats.length; i++) {
                     switch (resp.data.playerstats.stats[i].name) {
                         case "total_kills":

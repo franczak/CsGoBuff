@@ -5,6 +5,8 @@ import Container from './Components/CardContainer';
 import LoginButton from "./Components/LoginButton/index";
 import axios from 'axios'
 
+const server = 'https://cs-go-buff.herokuapp.com'
+    //https://cs-go-buff.herokuapp.com
 class App extends Component {
 
   state = {
@@ -12,7 +14,7 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    axios.get('https://cs-go-buff.herokuapp.com/user', {withCredentials: true}).then(res => {
+    axios.get(server + "/user", {withCredentials: true}).then(res => {
       console.log(res)
       if(!!res.data) {
           this.setState({showApp: true})
@@ -23,8 +25,7 @@ class App extends Component {
   render() {
     return <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">STEAM STATS FRIENDS</h1>
         </header>
         <br/>
         {
