@@ -3,9 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Container from './Components/CardContainer';
 import LoginButton from './Components/LoginButton/index';
-
-require('dotenv').config()
-const server = process.env.REACT_APP_backend;
+import { backend } from "./ENVS";
 
 class App extends Component {
     state = {
@@ -13,7 +11,7 @@ class App extends Component {
     };
 
     componentDidMount = () => {
-      axios.get(`${server}/user`, { withCredentials: true }).then((res) => {
+      axios.get(`${backend}/user`, { withCredentials: true }).then((res) => {
         if (res.data) {
           this.setState({ showApp: true });
         }
