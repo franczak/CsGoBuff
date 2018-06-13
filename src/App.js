@@ -4,7 +4,8 @@ import './App.css';
 import Container from './Components/CardContainer';
 import LoginButton from './Components/LoginButton/index';
 
-const server = 'https://cs-go-buff.herokuapp.com';
+require('dotenv').config()
+const server = process.env.REACT_APP_backend;
 
 class App extends Component {
     state = {
