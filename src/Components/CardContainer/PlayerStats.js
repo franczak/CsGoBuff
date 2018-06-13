@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-
-import { backend } from '../../ENVS';
-
 class PlayerStats extends Component {
     static propTypes = {
       onSubmit: PropTypes.func.isRequired,
@@ -19,11 +16,11 @@ class PlayerStats extends Component {
       const player = {
         steamID: '', nickname: '', avatar: '', totalKills: '', totalDeaths: '', totalTime: '', totalMatches: '', totalWins: '', totalMvps: '',
       };
-      axios.get(`${backend}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
+      axios.get(`${process.env.REACT_APP}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
         player.steamID = resp.data.response.players[0].steamid;
         player.nickname = resp.data.response.players[0].personaname;
         player.avatar = resp.data.response.players[0].avatarmedium;
-        axios.get(`${backend}/stats/${this.state.steamID}`, { withCredentials: true }).then((stats) => {
+        axios.get(`${process.env.REACT_APP_backend}/stats/${this.state.steamID}`, { withCredentials: true }).then((stats) => {
           for (let i = 0; i < stats.data.playerstats.stats.length; i += 1) {
             switch (stats.data.playerstats.stats[i].name) {
               case 'total_kills':

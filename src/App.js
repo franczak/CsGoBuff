@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Container from './Components/CardContainer';
 import LoginButton from './Components/LoginButton/index';
-import { backend } from "./ENVS";
 
 class App extends Component {
     state = {
@@ -11,7 +10,7 @@ class App extends Component {
     };
 
     componentDidMount = () => {
-      axios.get(`${backend}/user`, { withCredentials: true }).then((res) => {
+      axios.get(`${process.env.REACT_APP_backend}/user`, { withCredentials: true }).then((res) => {
         if (res.data) {
           this.setState({ showApp: true });
         }
