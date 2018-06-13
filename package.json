@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "boostrap": "^2.0.0",
-    "bootstrap": "^4.0.0",
     "dotenv": "^5.0.1",
     "immutability-helper": "^2.6.6",
     "prop-types": "^15.6.1",
@@ -14,13 +12,22 @@
     "react-dnd-html5-backend": "^2.6.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1",
-    "reactstrap": "^5.0.0-beta.3",
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/.bin/eslint src/Components",
+    "lint:fix": "./node_modules/.bin/eslint src/Components --fix"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2"
   }
 }

@@ -1,22 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+import React from 'react';
 
 
-
-const server = 'https://cs-go-buff.herokuapp.com'
-//https://cs-go-buff.herokuapp.com
-
-
-export default class LoginButton extends Component {
-
-    render() {
-        return(
-            <div>
-                <a href={server}>
-                    <img src={'https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png'} />
-                </a>
-            </div>
-
-        )
-    }
+export default function LoginButton() {
+  return (
+    <div>
+      <a href={process.env.backend}>
+        <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png" alt="login sign" />
+      </a>
+    </div>
+  );
 }
