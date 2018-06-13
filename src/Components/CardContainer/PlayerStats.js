@@ -16,7 +16,7 @@ class PlayerStats extends Component {
       const player = {
         steamID: '', nickname: '', avatar: '', totalKills: '', totalDeaths: '', totalTime: '', totalMatches: '', totalWins: '', totalMvps: '',
       };
-      axios.get(`${process.env.REACT_APP}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
+      axios.get(`${process.env.REACT_APP_backend}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
         player.steamID = resp.data.response.players[0].steamid;
         player.nickname = resp.data.response.players[0].personaname;
         player.avatar = resp.data.response.players[0].avatarmedium;
