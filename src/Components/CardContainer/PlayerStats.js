@@ -52,6 +52,9 @@ class PlayerStats extends Component {
 
 
         this.props.onSubmit(player)
+        apiServices.post('/user/friend', {steamid: this.state.steamID})
+        this.setState({ steamID: '' })
+      }).catch(() => {
         this.setState({ steamID: '' })
       })
 
