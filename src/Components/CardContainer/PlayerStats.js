@@ -53,9 +53,6 @@ class PlayerStats extends Component {
 
         this.props.onSubmit(player)
         this.setState({ steamID: '' })
-        /*axios.post(`${process.env.REACT_APP_backend}/user/add`, {
-          userId: player.steamID
-        })*/
       })
 
     };

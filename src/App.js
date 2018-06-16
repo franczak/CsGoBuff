@@ -36,7 +36,9 @@ class App extends Component {
                   <Container />
                 </div>
                 :
-                <LoginButton />
+                <div className="login_button">
+                  <LoginButton />
+                </div>
             }
           </div>
         </Fragment>
