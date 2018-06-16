@@ -35,7 +35,9 @@ class Friend extends Component {
 
 
   render() {
-    return (<div style={style}><img style={{width: 20, height: 20}} src={this.state.avatar} alt="friend avatar"/><p style={{margin: "0px 0px 0px 5px"}}>{this.state.nickname}</p>
+    return (<div style={style} onClick={(e) => console.log('CLICKED')}>
+              <img style={{width: 20, height: 20}} src={this.state.avatar} alt="friend avatar"/>
+              <p style={{margin: "0px 0px 0px 5px"}}>{this.state.nickname}</p>
             </div>);
   }
 }
