@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Container from './Components/CardContainer';
 import LoginButton from './Components/LoginButton/index';
+import FriendsContainer from './Components/FriendsContainer'
 
 class App extends Component {
     state = {
@@ -30,6 +31,8 @@ class App extends Component {
                         :
                       <LoginButton />
                 }
+          <br/>
+          <FriendsContainer/>
         </div>);
     }
 }
