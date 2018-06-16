@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
+import apiServices from "../../apiServices";
 
 const style = {
   display: "inline-flex",
@@ -24,12 +25,12 @@ class Friend extends Component {
   }
 
   getFriendDetails() {
-    axios.get(`${process.env.REACT_APP_backend}/details/${this.props.steamid}`, {withCredentials: true}).then((resp) => {
+    apiServices.get(`/steam/details/${this.props.steamid}`).then(resp => {
       this.setState({
-        avatar: resp.data.response.players[0].avatarmedium,
-        nickname: resp.data.response.players[0].personaname
+        avatar: resp.response.players[0].avatarmedium,
+        nickname: resp.response.players[0].personaname
       })
-    })
+    });
   }
 
 

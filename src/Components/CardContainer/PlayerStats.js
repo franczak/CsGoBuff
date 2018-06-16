@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import apiServices from '../../apiServices'
+
+
+
+const neededStats = [
+  'total_kills',
+  'total_deaths',
+  'total_time_played',
+  'total_matches_played',
+  'total_wins',
+  'total_mvps'
+];
 
 class PlayerStats extends Component {
     static propTypes = {
@@ -13,43 +25,39 @@ class PlayerStats extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      const player = {
-        steamID: '', nickname: '', avatar: '', totalKills: '', totalDeaths: '', totalTime: '', totalMatches: '', totalWins: '', totalMvps: '',
-      };
+      let player = {};
 
-      axios.get(`${process.env.REACT_APP_backend}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
-              player.steamID = resp.data.response.players[0].steamid;
-              player.nickname = resp.data.response.players[0].personaname;
-              player.avatar = resp.data.response.players[0].avatarmedium;
-              axios.get(`${process.env.REACT_APP_backend}/stats/${this.state.steamID}`, { withCredentials: true }).then((stats) => {
-                for (let i = 0; i < stats.data.playerstats.stats.length; i += 1) {
-                  switch (stats.data.playerstats.stats[i].name) {
-                    case 'total_kills':
-                      player.totalKills = stats.data.playerstats.stats[i].value;
-                      break;
-                    case 'total_deaths':
-                      player.totalDeaths = stats.data.playerstats.stats[i].value;
-                      break;
-                    case 'total_time_played':
-                      player.totalTime = stats.data.playerstats.stats[i].value;
-                      break;
-                    case 'total_matches_played':
-                      player.totalMatches = stats.data.playerstats.stats[i].value;
-                      break;
-                    case 'total_wins':
-                      player.totalWins = stats.data.playerstats.stats[i].value;
-                      break;
-                    case 'total_mvps':
-                      player.totalMvps = stats.data.playerstats.stats[i].value;
-                      break;
-                    default:
-                      break;
-                  }
-                }
-                this.props.onSubmit(player);
-                this.setState({ steamID: '' });
-              });
-            });
+      Promise.all([apiServices.get(`/steam/details/${this.state.steamID}`), apiServices.get(`/steam/stats/${this.state.steamID}`)]).then(res => {
+
+        const playerstats = res[1].playerstats;
+
+        player.steamID = res[0].response.players[0].steamid;
+        player.nickname = res[0].response.players[0].personaname;
+        player.avatar = res[0].response.players[0].avatarmedium;
+
+        const playerStats = playerstats.stats
+          .filter(({ name }) => neededStats.includes(name))
+          .reduce((prev, nexObj) => {
+            return {
+              ...prev,
+              [nexObj.name]: nexObj.value,
+            }
+          }, {});
+
+
+        player = {
+          ...player,
+          ...playerStats,
+        };
+
+
+        this.props.onSubmit(player)
+        this.setState({ steamID: '' })
+        /*axios.post(`${process.env.REACT_APP_backend}/user/add`, {
+          userId: player.steamID
+        })*/
+      })
+
     };
 
 

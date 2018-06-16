@@ -79,12 +79,12 @@ class Card extends Component {
       isDragging: PropTypes.bool.isRequired,
       avatar: PropTypes.any.isRequired,
       nickname: PropTypes.string.isRequired,
-      totalKills: PropTypes.number.isRequired,
-      totalDeaths: PropTypes.number.isRequired,
-      totalTime: PropTypes.number.isRequired,
-      totalMatches: PropTypes.number.isRequired,
-      totalWins: PropTypes.number.isRequired,
-      totalMvps: PropTypes.number.isRequired,
+      total_kills: PropTypes.number.isRequired,
+      total_deaths: PropTypes.number.isRequired,
+      total_time_played: PropTypes.number.isRequired,
+      total_matches_played: PropTypes.number.isRequired,
+      total_wins: PropTypes.number.isRequired,
+      total_mvps: PropTypes.number.isRequired,
     };
 
 
@@ -92,16 +92,15 @@ class Card extends Component {
       const {
         nickname,
         avatar,
-        totalKills,
-        totalDeaths,
-        totalTime,
-        totalMatches,
-        totalWins,
-        totalMvps,
+        total_kills,
+        total_deaths,
+        total_time_played,
+        total_matches_played,
+        total_wins,
+        total_mvps,
         isDragging,
       } = this.props;
       const opacity = isDragging ? 0 : 1;
-
       return (
         <div style={{ ...style, opacity }}>
           <img src={avatar} style={{ borderRadius: 10 }} alt="avatar" />
@@ -110,12 +109,12 @@ class Card extends Component {
             <div className="player-nickname" style={{ fontSize: '1.25em', fontWeight: 'bold' }}>{nickname}</div>
           </div>
           <div style={{ textAlign: 'justify', marginLeft: 10 }}>
-                    Total kills: {totalKills}<br />
-                    Total deaths: {totalDeaths}<br />
-                    Total time: {totalTime}<br />
-                    Total matches: {totalMatches}<br />
-                    Total wins: {totalWins}<br />
-                    Total MVPs: {totalMvps}
+                    Total kills: {total_kills}<br />
+                    Total deaths: {total_deaths}<br />
+                    Total time: {total_time_played}<br />
+                    Total matches: {total_matches_played}<br />
+                    Total wins: {total_wins}<br />
+                    Total MVPs: {total_mvps}
           </div>
         </div>
       );
