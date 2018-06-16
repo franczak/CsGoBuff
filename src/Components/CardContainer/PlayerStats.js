@@ -57,6 +57,7 @@ class PlayerStats extends Component {
           userId: player.steamID
         })*/
       })
+
     };
 
 

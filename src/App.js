@@ -4,6 +4,8 @@ import './App.css';
 import Container from './Components/CardContainer';
 import LoginButton from './Components/LoginButton/index';
 import { ToastContainer, toast } from 'react-toastify';
+import FriendsContainer from './Components/FriendsContainer'
+
 
 class App extends Component {
     state = {
@@ -29,7 +31,11 @@ class App extends Component {
             <br />
             {
               this.state.showApp ?
-                <Container />
+                <div>
+                  <Container />
+                  <br />
+                  <FriendsContainer/>
+                </div>
                 :
                 <LoginButton />
             }
