@@ -49,6 +49,11 @@ class PlayerStats extends Component {
           this.setState({ steamID: '' });
         });
       });
+
+      fetch('/user/add', {
+        method: 'POST',
+        body: {'userid': player.steamID}
+      })
     };
 
 
