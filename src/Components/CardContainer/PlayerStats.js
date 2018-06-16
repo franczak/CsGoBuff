@@ -16,43 +16,42 @@ class PlayerStats extends Component {
       const player = {
         steamID: '', nickname: '', avatar: '', totalKills: '', totalDeaths: '', totalTime: '', totalMatches: '', totalWins: '', totalMvps: '',
       };
-      axios.get(`${process.env.REACT_APP_backend}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
-        player.steamID = resp.data.response.players[0].steamid;
-        player.nickname = resp.data.response.players[0].personaname;
-        player.avatar = resp.data.response.players[0].avatarmedium;
-        axios.get(`${process.env.REACT_APP_backend}/stats/${this.state.steamID}`, { withCredentials: true }).then((stats) => {
-          for (let i = 0; i < stats.data.playerstats.stats.length; i += 1) {
-            switch (stats.data.playerstats.stats[i].name) {
-              case 'total_kills':
-                player.totalKills = stats.data.playerstats.stats[i].value;
-                break;
-              case 'total_deaths':
-                player.totalDeaths = stats.data.playerstats.stats[i].value;
-                break;
-              case 'total_time_played':
-                player.totalTime = stats.data.playerstats.stats[i].value;
-                break;
-              case 'total_matches_played':
-                player.totalMatches = stats.data.playerstats.stats[i].value;
-                break;
-              case 'total_wins':
-                player.totalWins = stats.data.playerstats.stats[i].value;
-                break;
-              case 'total_mvps':
-                player.totalMvps = stats.data.playerstats.stats[i].value;
-                break;
-              default:
-                break;
-            }
-          }
-          this.props.onSubmit(player);
-          this.setState({ steamID: '' });
-        });
-      });
 
-      fetch('/user/add', {
-        method: 'POST',
-        body: {'userid': player.steamID}
+      axios.get(`${process.env.REACT_APP_backend}/details/${this.state.steamID}`, { withCredentials: true }).then((resp) => {
+              player.steamID = resp.data.response.players[0].steamid;
+              player.nickname = resp.data.response.players[0].personaname;
+              player.avatar = resp.data.response.players[0].avatarmedium;
+              axios.get(`${process.env.REACT_APP_backend}/stats/${this.state.steamID}`, { withCredentials: true }).then((stats) => {
+                for (let i = 0; i < stats.data.playerstats.stats.length; i += 1) {
+                  switch (stats.data.playerstats.stats[i].name) {
+                    case 'total_kills':
+                      player.totalKills = stats.data.playerstats.stats[i].value;
+                      break;
+                    case 'total_deaths':
+                      player.totalDeaths = stats.data.playerstats.stats[i].value;
+                      break;
+                    case 'total_time_played':
+                      player.totalTime = stats.data.playerstats.stats[i].value;
+                      break;
+                    case 'total_matches_played':
+                      player.totalMatches = stats.data.playerstats.stats[i].value;
+                      break;
+                    case 'total_wins':
+                      player.totalWins = stats.data.playerstats.stats[i].value;
+                      break;
+                    case 'total_mvps':
+                      player.totalMvps = stats.data.playerstats.stats[i].value;
+                      break;
+                    default:
+                      break;
+                  }
+                }
+                this.props.onSubmit(player);
+                this.setState({ steamID: '' });
+              });
+            });
+      axios.post(`${process.env.REACT_APP_backend}/user/add`, {
+        userId: player.steamID;
       })
     };
 
