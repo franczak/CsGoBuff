@@ -32,9 +32,8 @@ class App extends Component {
             {
               this.state.showApp ?
                 <div>
-                  <Container />
-                  <br />
                   <FriendsContainer/>
+                  <Container />
                 </div>
                 :
                 <LoginButton />

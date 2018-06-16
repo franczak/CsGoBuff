@@ -6,7 +6,7 @@ import Card from './Card';
 import PlayerStats from './PlayerStats';
 
 const style = {
-  width: 200,
+  width: 180,
   display: 'inline-block',
 };
 

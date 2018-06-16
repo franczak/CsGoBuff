@@ -63,11 +63,11 @@ class PlayerStats extends Component {
 
     render() {
       return (
-        <div className="col">
+        <div className="col" style={{paddingLeft: 30}}>
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
-              style={{ height: 30, width: 300 }}
+              style={{ height: 30, width: 300 , marginLeft: "5%"}}
               value={this.state.steamID}
               onChange={e => this.setState({ steamID: e.target.value })}
               placeholder="Player steamid"
