@@ -31,11 +31,15 @@ class PlayerStats extends Component {
 
     render() {
       return (
-        <div className="col" style={{paddingLeft: 30}}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection:'row'
+        }}>
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
-              style={{ height: 30, width: 300 , marginLeft: "5%"}}
+              style={{ height: 30, width: 300, marginRight: 5}}
               value={this.state.steamID}
               onChange={e => this.setState({ steamID: e.target.value })}
               placeholder="Player steamid"

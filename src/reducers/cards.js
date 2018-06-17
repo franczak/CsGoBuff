@@ -4,6 +4,10 @@ const initialState = {
   friends: {
     isFetching: false,
     friends: []
+  },
+  dBfriends: {
+    isFetching: false,
+    friends: []
   }
 };
 
@@ -29,6 +33,23 @@ export default (state = initialState, action) => {
         friends: {
           isFetching: false,
           friends: action.friends
+        }
+      };
+    case types.FETCH_DB_FRIENDS:
+      return {
+        ...state,
+        dBfriends: {
+          ...state.dBfriends,
+          isFetching: true,
+        }
+      };
+    case types.RECEIVE_DB_FRIENDS:
+      const friends = action.friends.map(friend => ({ steamid: friend }))
+      return {
+        ...state,
+        dBfriends: {
+          isFetching: false,
+          friends: friends
         }
       };
     default:
