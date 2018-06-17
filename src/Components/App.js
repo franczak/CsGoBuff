@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import FriendsContainer from './FriendsContainer';
 import { fetchUser } from '../actions/user';
 import { connect } from 'react-redux';
+import PlayerStats from "./CardContainer/PlayerStats";
 
 class App extends Component {
     state = {
@@ -26,16 +27,39 @@ class App extends Component {
       return (
         <div className="App">
           <ToastContainer toastClassName="toast" />
-          <header className="App-header">
-            <h1 className="App-title">STEAM STATS FRIENDS</h1>
+          <header style={{
+            height: '10%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            backgroundColor: '#222',
+            alignItems: 'center',
+            padding: '0 10px'
+          }}>
+            <h1 style={{color: 'white'}}>STEAM STATS FRIENDS</h1>
+            <LogoutButton />
           </header>
           <br />
           {
               this.props.user.user ?
                 <div>
-                  <FriendsContainer />
-                  <Container />
-                  <LogoutButton />
+                  <PlayerStats />
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '25% 75%'
+                  }}>
+                    <div
+                      style={{
+                        gridColumn: 1
+                      }}>
+                      <FriendsContainer />
+                    </div>
+                    <div
+                      style={{
+                        gridColumn: 2
+                      }}>
+                      <Container />
+                    </div>
+                  </div>
                 </div>
                 :
                 <LoginButton/>

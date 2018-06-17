@@ -47,8 +47,12 @@ class Container extends Component {
 
     render() {
       return (
-        <div>
-          <PlayerStats />
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'flex-start'
+        }}>
           {this.state.cards.map((card, i) => (
             <div style={style}>
               <Card
