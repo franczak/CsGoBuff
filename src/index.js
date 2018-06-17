@@ -8,5 +8,6 @@ if (process.env.NODE_ENV === 'development') {
   require('dotenv').config()
 }
 
+
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

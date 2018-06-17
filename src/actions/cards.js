@@ -4,7 +4,8 @@ export const ADD_CARD = 'ADD_CARD';
 export const REMOVE_CARD = 'REMOVE_CARD';
 export const FETCH_FRIENDS = 'FETCH_FRIENDS';
 export const RECEIVE_FRIENDS = 'RECEIVE_FRIENDS';
-
+export const FETCH_DB_FRIENDS = 'FETCH_DB_FRIENDS';
+export const RECEIVE_DB_FRIENDS = 'RECEIVE_DB_FRIENDS';
 
 
 const neededStats = [
@@ -64,3 +65,17 @@ export const fetchFriends = () => {
     })
   }
 };
+
+export const fetchDbFriends = () => {
+  return dispatch => {
+    dispatch({
+      type: FETCH_DB_FRIENDS
+    });
+    return apiServices.get('/user/friends').then(friends => {
+      dispatch({
+        type: RECEIVE_DB_FRIENDS,
+        friends
+      })
+    })
+  }
+}

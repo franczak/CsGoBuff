@@ -27,31 +27,30 @@ class TotalWinsChart extends Component {
 const mapStateToProps = ({ cards }) => {
   const selected = cards.cards;
 
-  const labels = selected.map(user => user.nickname)
-  const totalWins = selected.map(user => user.total_wins)
-  const totalKills = selected.map(user => user.total_kills)
+  const neededStats = [
+    'total_kills',
+    'total_deaths',
+    'total_time_played',
+    'total_matches_played',
+    'total_wins',
+    'total_mvps'
+  ];
+
+  const datasets = neededStats.map(stat => {
+    return {
+      label: stat,
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,100,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: selected.map(user => user[stat])
+    }
+  });
+
   const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: 'TotalWins',
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,100,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: totalWins
-      },
-      {
-        label: 'TotalKills',
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: totalKills
-      }
-    ]
+    labels: selected.map(user => user.nickname),
+    datasets
   };
   return {
     data

@@ -10,8 +10,6 @@ const store = createStore(combineReducers(reducers), applyMiddleware(thunk, logg
 
 class App extends Component {
 
-
-
   render() {
     return (
       <Provider store={store}>
