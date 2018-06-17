@@ -3,10 +3,11 @@ import axios from 'axios';
 import '../App.css';
 import Container from './CardContainer';
 import LoginButton from './LoginButton/index';
+import LogoutButton from './LogoutButton';
 import { ToastContainer, toast } from 'react-toastify';
-import FriendsContainer from './FriendsContainer'
-import { fetchUser } from '../actions/user'
-import {connect} from "react-redux";
+import FriendsContainer from './FriendsContainer';
+import { fetchUser } from '../actions/user';
+import { connect } from 'react-redux';
 
 class App extends Component {
     state = {
@@ -14,42 +15,43 @@ class App extends Component {
     };
 
     componentDidMount = () => {
-      this.props.checkForUser().then(user => {
-        console.log(user)
+      this.props.checkForUser().then((user) => {
         if (user) {
           this.setState({ showApp: true });
         }
-      })
+      });
     };
 
     render() {
       return (
-          <div className="App">
-            <ToastContainer toastClassName={'toast'} />
-            <header className="App-header">
-              <h1 className="App-title">STEAM STATS FRIENDS</h1>
-            </header>
-            <br />
-            {
+        <div className="App">
+          <ToastContainer toastClassName="toast" />
+          <header className="App-header">
+            <h1 className="App-title">STEAM STATS FRIENDS</h1>
+          </header>
+          <br />
+          {
               this.state.showApp ?
                 <div>
-                  <FriendsContainer/>
+                  <FriendsContainer />
                   <Container />
+                  <LogoutButton />
                 </div>
                 :
-                <LoginButton />
+                <LoginButton/>
             }
-          </div>
+        </div>
       );
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    checkForUser: () => {
-      return dispatch(fetchUser())
-    }
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  checkForUser: () => dispatch(fetchUser()),
+});
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
