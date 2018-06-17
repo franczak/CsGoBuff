@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from "axios/index";
 import apiServices from "../../apiServices";
 
 const style = {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux"
-import {logoutUser} from '../../actions/user';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/user';
 
 class LogoutButton extends Component {
-
   render() {
     return (
       <div>
@@ -13,12 +12,8 @@ class LogoutButton extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return {
-    handleLogout: () =>{
-      dispatch(logoutUser());
-    },
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  handleLogout: () => dispatch(logoutUser()),
+});
 
 export default connect(null, mapDispatchToProps)(LogoutButton);

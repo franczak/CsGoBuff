@@ -1,0 +1,11 @@
+.friends-container{
+    width: 30%;
+    display: inline-grid;
+    float: left;
+    margin-left: 30px;
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+.friends-container::-webkit-scrollbar {display:none;}
+

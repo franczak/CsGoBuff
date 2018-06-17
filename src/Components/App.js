@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 import '../App.css';
 import Container from './CardContainer';
 import LoginButton from './LoginButton/index';
 import LogoutButton from './LogoutButton';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import FriendsContainer from './FriendsContainer';
 import { fetchUser } from '../actions/user';
 import { connect } from 'react-redux';
@@ -22,6 +21,7 @@ class App extends Component {
       });
     };
 
+
     render() {
       return (
         <div className="App">
@@ -31,7 +31,7 @@ class App extends Component {
           </header>
           <br />
           {
-              this.state.showApp ?
+              this.props.user.user ?
                 <div>
                   <FriendsContainer />
                   <Container />

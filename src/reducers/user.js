@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
         fetching: false
       };
     case types.LOGOUT_USER:
-      return{
+      return {
         ...state,
         user: null
       };
