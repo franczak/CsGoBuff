@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Container from './CardContainer';
-import LoginButton from './LoginButton/index';
 import LogoutButton from './LogoutButton';
 import { ToastContainer } from 'react-toastify';
 import FriendsContainer from './FriendsContainer';
 import { fetchUser } from '../actions/user';
 import { connect } from 'react-redux';
 import PlayerStats from "./CardContainer/PlayerStats";
+import TotalWinsChart from '../Components/Charts/TotalWinsChart'
+import LoginButton from "./LoginButton/index";
+
 
 class App extends Component {
     state = {
@@ -57,6 +59,7 @@ class App extends Component {
                       style={{
                         gridColumn: 2
                       }}>
+                      <TotalWinsChart />
                       <Container />
                     </div>
                   </div>
