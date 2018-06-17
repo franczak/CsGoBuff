@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
         user: action.user,
         fetching: false
       };
+    case types.LOGOUT_USER:
+      return{
+        ...state,
+        user: null
+      };
     default:
       return state;
   }
