@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import apiServices from '../../apiServices'
+import {connect} from "react-redux";
+import {addCard} from "../../actions/cards";
 
 
-
-const neededStats = [
-  'total_kills',
-  'total_deaths',
-  'total_time_played',
-  'total_matches_played',
-  'total_wins',
-  'total_mvps'
-];
 
 class PlayerStats extends Component {
     static propTypes = {
@@ -25,39 +17,15 @@ class PlayerStats extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      let player = {};
 
-      Promise.all([apiServices.get(`/steam/details/${this.state.steamID}`), apiServices.get(`/steam/stats/${this.state.steamID}`)]).then(res => {
-
-        const playerstats = res[1].playerstats;
-
-        player.steamID = res[0].response.players[0].steamid;
-        player.nickname = res[0].response.players[0].personaname;
-        player.avatar = res[0].response.players[0].avatarmedium;
-
-        const playerStats = playerstats.stats
-          .filter(({ name }) => neededStats.includes(name))
-          .reduce((prev, nexObj) => {
-            return {
-              ...prev,
-              [nexObj.name]: nexObj.value,
-            }
-          }, {});
-
-
-        player = {
-          ...player,
-          ...playerStats,
-        };
-
-
-        this.props.onSubmit(player)
-        apiServices.post('/user/friend', {steamid: this.state.steamID})
-        this.setState({ steamID: '' })
-      }).catch(() => {
-        this.setState({ steamID: '' })
-      })
-
+      this.props.addCard(this.state.steamID)
+        .then(_ => {
+          apiServices.post('/user/friend', {steamid: this.state.steamID})
+          this.setState({ steamID: '' })
+        })
+        .catch(_ => {
+          this.setState({ steamID: '' })
+        })
     };
 
 
@@ -80,4 +48,11 @@ class PlayerStats extends Component {
     }
 }
 
-export default PlayerStats;
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    addCard: (steamid) => dispatch(addCard(steamid))
+  })
+}
+
+export default connect(null, mapDispatchToProps)(PlayerStats);

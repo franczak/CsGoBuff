@@ -4,6 +4,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './Card';
 import PlayerStats from './PlayerStats';
+import {connect} from "react-redux";
 
 const style = {
   display: 'inline-block',
@@ -17,6 +18,12 @@ class Container extends Component {
     this.state = {
       cards: [],
     };
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({
+      cards: nextProps.cards
+    })
   }
 
   moveCard(dragIndex, hoverIndex) {
@@ -41,7 +48,7 @@ class Container extends Component {
     render() {
       return (
         <div>
-          <PlayerStats onSubmit={this.addNewCard} />
+          <PlayerStats />
           {this.state.cards.map((card, i) => (
             <div style={style}>
               <Card
@@ -59,4 +66,15 @@ class Container extends Component {
     }
 }
 
-export default DragDropContext(HTML5Backend)(Container);
+
+
+const mapStateToProps = ({ cards }) => {
+  const selectedIds = cards.cards;
+  return {
+    cards: selectedIds
+  }
+}
+
+
+
+export default DragDropContext(HTML5Backend)(connect(mapStateToProps, null)(Container));

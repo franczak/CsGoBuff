@@ -1,22 +1,27 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 import Friend from './Friend'
+import {connect} from "react-redux";
+import {addCard, fetchFriends} from "../../actions/cards";
 
 const style = {
   width: 200
 }
 
-class FriendsContainer extends Component{
+class FriendsContainer extends Component {
+
+  componentDidMount() {
+    this.props.fetchFriends();
+  }
 
   render(){
-    const friends = {"friendslist":{"friends":[{"steamid":"76561197984290150","relationship":"friend","friend_since":1451901051},{"steamid":"76561197988604340","relationship":"friend","friend_since":1508710228},{"steamid":"76561197997057746","relationship":"friend","friend_since":1473019481},{"steamid":"76561197997955732","relationship":"friend","friend_since":1494881696}]}}
-    const friendsArray = friends.friendslist.friends
     return(
       <div style={{width: "30%", display: "inline-grid", float:"left", marginLeft:"30px"}}>
-      {friendsArray.map((friend, i) => (
+      {this.props.friends.map((friend, i) => (
           <Friend
             steamid={friend.steamid}
             index={i}
+            onClick={() => this.props.addCard(friend.steamid)}
           />
       ))}
       </div>
@@ -24,4 +29,18 @@ class FriendsContainer extends Component{
   }
 }
 
-export default FriendsContainer
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    addCard: (steamid) => dispatch(addCard(steamid)),
+    fetchFriends: () => dispatch(fetchFriends())
+  })
+};
+
+
+const mapStateToProps = ({ cards: { friends } }) => {
+  return {
+    friends: friends.friends
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer)
