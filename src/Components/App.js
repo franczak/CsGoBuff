@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import FriendsContainer from './FriendsContainer'
 import { fetchUser } from '../actions/user'
 import {connect} from "react-redux";
+import TotalWinsChart from '../Components/Charts/TotalWinsChart'
 
 class App extends Component {
     state = {
@@ -35,6 +36,7 @@ class App extends Component {
                 <div>
                   <FriendsContainer/>
                   <Container />
+                  <TotalWinsChart />
                 </div>
                 :
                 <LoginButton />

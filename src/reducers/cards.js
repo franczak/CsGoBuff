@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case types.ADD_CARD:
       return {
+        ...state,
         cards: [...state.cards, action.card]
       };
 
