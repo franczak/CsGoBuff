@@ -37,7 +37,34 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
+@keyframes alertbox {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.alert-box{
+  display: flex;
+  border-radius: 6px;
+  width: 20vw;
+  height: 10vh;
+  background: linear-gradient(to bottom, #f46e6e 0%,#ff4242 100%);
+  align-items: center;
+  justify-content: center;
+  animation-name: alertbox;
+  animation-duration: 0.5s;
+}
+
+
+
+.Toastify__close-button{
+  background-color: transparent;
+  border: 0;
+  margin-left: -2vw;
+  animation-name: alertbox ;
+  animation-duration: 0.5s;
+}

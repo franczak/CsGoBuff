@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import Friend from './Friend';
 import './style.css'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {addCard, fetchDbFriends, fetchFriends} from '../../actions/cards';
 
 
@@ -14,6 +14,7 @@ class FriendsContainer extends Component {
   state = {
     hidden: true
   };
+
   render() {
     return (
       <Fragment>
@@ -26,30 +27,32 @@ class FriendsContainer extends Component {
           }}>
             Steam friends
           </h1>
-          <div className={"friends-container " + (!this.state.hidden && 'hidden')}>
-            {this.props.friends.map((friend, i) => (
-              <Friend
-                steamid={friend.steamid}
-                index={i}
-                key={friend.steamid}
-                onClick={() => this.props.addCard(friend.steamid)}
-              />
-            ))}
-          </div>
-          <h1 onClick={() => this.setState({hidden: false})} style={{
-            cursor: 'pointer'
-          }}>
-            Recent searches
-          </h1>
-          <div className={"friends-container " + (this.state.hidden && 'hidden')}>
-            {this.props.dBfriends.map((friend, i) => (
-              <Friend
-                steamid={friend.steamid}
-                index={i}
-                key={friend.steamid}
-                onClick={() => this.props.addCard(friend.steamid)}
-              />
-            ))}
+          <div className="content-container">
+            <div className={"friends-container " + (!this.state.hidden && 'hidden')}>
+              {this.props.friends.map((friend, i) => (
+                <Friend
+                  steamid={friend.steamid}
+                  index={i}
+                  key={friend.steamid}
+                  onClick={() => this.props.addCard(friend.steamid)}
+                />
+              ))}
+            </div>
+            <h1 onClick={() => this.setState({hidden: false})} style={{
+              cursor: 'pointer'
+            }}>
+              Recent searches
+            </h1>
+            <div className={"friends-container " + (this.state.hidden && 'hidden')}>
+              {this.props.dBfriends.map((friend, i) => (
+                <Friend
+                  steamid={friend.steamid}
+                  index={i}
+                  key={friend.steamid}
+                  onClick={() => this.props.addCard(friend.steamid)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </Fragment>
@@ -64,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const mapStateToProps = ({ cards: { friends, dBfriends } }) => ({
+const mapStateToProps = ({cards: {friends, dBfriends}}) => ({
   friends: friends.friends,
   dBfriends: dBfriends.friends
 });

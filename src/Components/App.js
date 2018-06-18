@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import PlayerStats from "./CardContainer/PlayerStats";
 import TotalWinsChart from '../Components/Charts/TotalWinsChart'
 import LoginButton from "./LoginButton/index";
+import Profile from "./Profile";
 
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
     render() {
       return (
         <div className="App">
-          <ToastContainer toastClassName="toast" />
+          <ToastContainer toastClassName="toast" closeOnClick/>
           <header style={{
             height: '10%',
             display: 'flex',
@@ -38,7 +39,13 @@ class App extends Component {
             padding: '0 10px'
           }}>
             <h1 style={{color: 'white'}}>STEAM STATS FRIENDS</h1>
-            <LogoutButton />
+            {this.props.user.user ?
+              <div style={{display: 'flex'}}>
+                <Profile />
+                <LogoutButton />
+              </div>
+              :<div/>
+            }
           </header>
           <br />
           {
