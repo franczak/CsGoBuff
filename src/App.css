@@ -59,12 +59,21 @@
   animation-duration: 0.5s;
 }
 
-
-
 .Toastify__close-button{
   background-color: transparent;
   border: 0;
   margin-left: -2vw;
   animation-name: alertbox ;
   animation-duration: 0.5s;
+}
+
+.popup-content {
+  border-radius: 5px 20px 5px 20px;
+  border: 3px solid rgba(0,0,0,0.24)!important;
+}
+
+.stat-value{
+  font-weight: bold;
+  color: #a40017;
+
 }

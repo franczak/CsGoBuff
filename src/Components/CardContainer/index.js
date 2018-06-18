@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import Card from './Card';
-import PlayerStats from './PlayerStats';
 import {connect} from "react-redux";
+import Card from './Card';
 
 const style = {
   display: 'inline-block',
