@@ -27,6 +27,8 @@ class App extends Component {
 
 
     render() {
+
+      console.log(this.props.user)
       return (
         <div className="App">
           <ToastContainer toastClassName="toast" closeOnClick/>

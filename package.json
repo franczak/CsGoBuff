@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
+    "cypress": "^3.0.1",
     "dotenv": "^5.0.1",
     "immutability-helper": "^2.6.6",
     "prop-types": "^15.6.1",
