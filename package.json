@@ -31,7 +31,7 @@
     "lint": "./node_modules/.bin/eslint src/Components",
     "lint:fix": "./node_modules/.bin/eslint src/Components --fix",
     "cypress:open": "./node_modules/.bin/cypress open",
-    "cypress:run": "./node_modules/.bin/cypress"
+    "cypress:run": "./node_modules/.bin/cypress run"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
