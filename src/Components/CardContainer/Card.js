@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import { connect as conn} from 'react-redux';
+import { connect as conn } from 'react-redux';
 import Popup from 'reactjs-popup';
 import ItemTypes from './ItemTypes';
 import Stats from '../Stats';

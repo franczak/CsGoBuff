@@ -18,6 +18,8 @@ export const fetchUser = () => (dispatch) => {
 };
 
 export const logoutUser = () =>
+
+
   dispatch => apiServices.get('/logout').then(() => {
     dispatch({
       type: LOGOUT_USER,
