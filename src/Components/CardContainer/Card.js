@@ -103,7 +103,7 @@ class Card extends Component {
     } = this.props;
     const opacity = isDragging ? 0 : 1;
     return (
-      <div>
+      <div className={'user-card'}>
         <Popup
           trigger={
             <div style={{...style, opacity}}>
