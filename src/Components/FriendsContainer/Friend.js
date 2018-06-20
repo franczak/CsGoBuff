@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import apiServices from "../../apiServices";
+import apiServices from '../../apiServices';
 
 const style = {
-  display: "inline-flex",
-  marginBottom: "20px",
+  display: 'inline-flex',
+  marginBottom: '20px',
   width: 200,
   padding: 5,
   borderRadius: 6,
-  cursor: 'pointer'
+  cursor: 'pointer',
 };
 
 class Friend extends Component {
@@ -15,20 +15,20 @@ class Friend extends Component {
     super(props);
     this.state = {
       avatar: '',
-      nickname: ''
+      nickname: '',
     };
   }
 
-  componentDidMount(){
-    this.getFriendDetails()
+  componentDidMount() {
+    this.getFriendDetails();
   }
 
   getFriendDetails() {
-    apiServices.get(`/steam/details/${this.props.steamid}`).then(resp => {
+    apiServices.get(`/steam/details/${this.props.steamid}`).then((resp) => {
       this.setState({
         avatar: resp.response.players[0].avatarmedium,
-        nickname: resp.response.players[0].personaname
-      })
+        nickname: resp.response.players[0].personaname,
+      });
     });
   }
 
@@ -36,8 +36,8 @@ class Friend extends Component {
   render() {
     return (
       <div style={style} onClick={this.props.onClick}>
-        <img style={{width: 50, height: 50}} src={this.state.avatar} alt="friend avatar"/>
-        <p style={{marginLeft: '5px'}}>{this.state.nickname}</p>
+        <img style={{ width: 50, height: 50 }} src={this.state.avatar} alt="friend avatar" />
+        <p style={{ marginLeft: '5px' }}>{this.state.nickname}</p>
       </div>
     );
   }

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {findDOMNode} from 'react-dom';
-import {DragSource, DropTarget} from 'react-dnd';
+import { findDOMNode } from 'react-dom';
+import { DragSource, DropTarget } from 'react-dnd';
 import Popup from 'reactjs-popup';
 import ItemTypes from './ItemTypes';
 import Stats from '../Stats';
@@ -68,7 +68,7 @@ function collectDrop(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-    isOverCurrent: monitor.isOver({shallow: true}),
+    isOverCurrent: monitor.isOver({ shallow: true }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType(),
   };
@@ -103,21 +103,21 @@ class Card extends Component {
     } = this.props;
     const opacity = isDragging ? 0 : 1;
     return (
-      <div className={'user-card'}>
+      <div className="user-card">
         <Popup
           trigger={
-            <div style={{...style, opacity}}>
-              <img src={avatar} style={{borderRadius: 10, marginLeft: 45}} alt="avatar"/>
-              <br/>
-              <div style={{display: 'inline-block', marginLeft: 10}}>
-                <div className="player-nickname" style={{fontSize: '1.25em', fontWeight: 'bold'}}>{nickname}</div>
+            <div style={{ ...style, opacity }}>
+              <img src={avatar} style={{ borderRadius: 10, marginLeft: 45 }} alt="avatar" />
+              <br />
+              <div style={{ display: 'inline-block', marginLeft: 10 }}>
+                <div className="player-nickname" style={{ fontSize: '1.25em', fontWeight: 'bold' }}>{nickname}</div>
               </div>
-              <div style={{textAlign: 'justify', marginLeft: 10}}>
-                Total kills: {total_kills}<br/>
-                Total deaths: {total_deaths}<br/>
-                Total time: {total_time_played}<br/>
-                Total matches: {total_matches_played}<br/>
-                Total wins: {total_wins}<br/>
+              <div style={{ textAlign: 'justify', marginLeft: 10 }}>
+                Total kills: {total_kills}<br />
+                Total deaths: {total_deaths}<br />
+                Total time: {total_time_played}<br />
+                Total matches: {total_matches_played}<br />
+                Total wins: {total_wins}<br />
                 Total MVPs: {total_mvps}
               </div>
             </div>
@@ -125,7 +125,7 @@ class Card extends Component {
           modal
           closeOnDocumentClick
         >
-          <Stats steamid={this.props.id}/>
+          <Stats steamid={this.props.id} />
         </Popup>
       </div>
     );

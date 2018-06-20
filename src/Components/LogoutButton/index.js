@@ -6,11 +6,15 @@ class LogoutButton extends Component {
   render() {
     return (
       <div>
-        <button style={{
+        <button
+          style={{
           margin: 5,
           height: 50,
-          width: 100
-        }} onClick={() => this.props.handleLogout()}>Logout</button>
+          width: 100,
+        }}
+          onClick={() => this.props.handleLogout()}
+        >Logout
+        </button>
       </div>
     );
   }

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import apiServices from '../../apiServices'
-import {connect} from "react-redux";
-import {addCard} from "../../actions/cards";
-
+import { connect } from 'react-redux';
+import apiServices from '../../apiServices';
+import { addCard } from '../../actions/cards';
 
 
 class PlayerStats extends Component {
-    static propTypes = {
-      onSubmit: PropTypes.func.isRequired,
-    };
-
     state = {
       steamID: '',
     };
@@ -19,13 +13,13 @@ class PlayerStats extends Component {
       e.preventDefault();
 
       this.props.addCard(this.state.steamID)
-        .then(_ => {
-          apiServices.post('/user/friend', {steamid: this.state.steamID})
-          this.setState({ steamID: '' })
+        .then(() => {
+          apiServices.post('/user/friend', { steamid: this.state.steamID });
+          this.setState({ steamID: '' });
         })
-        .catch(_ => {
-          this.setState({ steamID: '' })
-        })
+        .catch(() => {
+          this.setState({ steamID: '' });
+        });
     };
 
 
@@ -34,12 +28,13 @@ class PlayerStats extends Component {
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          flexDirection:'row'
-        }}>
+          flexDirection: 'row',
+        }}
+        >
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
-              style={{ height: 30, width: 300, marginRight: 5}}
+              style={{ height: 30, width: 300, marginRight: 5 }}
               value={this.state.steamID}
               onChange={e => this.setState({ steamID: e.target.value })}
               placeholder="Player steamid"
@@ -53,10 +48,8 @@ class PlayerStats extends Component {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    addCard: (steamid) => dispatch(addCard(steamid))
-  })
-}
+const mapDispatchToProps = dispatch => ({
+  addCard: steamid => dispatch(addCard(steamid)),
+});
 
 export default connect(null, mapDispatchToProps)(PlayerStats);

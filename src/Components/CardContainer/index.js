@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import {connect} from "react-redux";
+import { connect } from 'react-redux';
 import Card from './Card';
 
 const style = {
@@ -21,8 +21,8 @@ class Container extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({
-      cards: nextProps.cards
-    })
+      cards: nextProps.cards,
+    });
   }
 
   moveCard(dragIndex, hoverIndex) {
@@ -50,8 +50,9 @@ class Container extends Component {
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'flex-start'
-        }}>
+          justifyContent: 'flex-start',
+        }}
+        >
           {this.state.cards.map((card, i) => (
             <div style={style}>
               <Card
@@ -70,14 +71,12 @@ class Container extends Component {
 }
 
 
-
 const mapStateToProps = ({ cards }) => {
   const selectedIds = cards.cards;
   return {
-    cards: selectedIds
-  }
-}
-
+    cards: selectedIds,
+  };
+};
 
 
 export default DragDropContext(HTML5Backend)(connect(mapStateToProps, null)(Container));
