@@ -52,6 +52,13 @@ export default (state = initialState, action) => {
           friends: friends
         }
       };
+    case types.REMOVE_CARD:
+      const { cards } = state;
+      const newCards = [...cards].filter(card => card.steamID!==action.steamID)
+      return {
+        ...state,
+        cards: newCards
+      };
     default:
       return state;
   }

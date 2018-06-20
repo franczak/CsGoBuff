@@ -79,3 +79,13 @@ export const fetchDbFriends = () => {
     })
   }
 }
+
+
+export const removeCard = (steamid) => {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_CARD,
+      steamID: steamid
+    })
+  }
+}

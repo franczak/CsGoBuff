@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
+import { connect as conn} from 'react-redux';
 import Popup from 'reactjs-popup';
 import ItemTypes from './ItemTypes';
 import Stats from '../Stats';
+import { removeCard } from '../../actions/cards';
 
 const style = {
   border: '2px solid red',
@@ -104,6 +106,7 @@ class Card extends Component {
     const opacity = isDragging ? 0 : 1;
     return (
       <div className="user-card">
+        <button onClick={() => this.props.removeCard(this.props.id)}>remove</button>
         <Popup
           trigger={
             <div style={{ ...style, opacity }}>
@@ -143,4 +146,9 @@ class Card extends Component {
 const dropTargetHOC = DropTarget(ItemTypes.CARD, cardTarget, collectDrop);
 const dragSourceHOC = DragSource(ItemTypes.CARD, cardSource, collectDrag);
 
-export default dropTargetHOC(dragSourceHOC(Card));
+const mapDispatchToProps = dispatch => ({
+  removeCard: (steamid) => {
+    dispatch(removeCard(steamid));
+  },
+});
+export default dropTargetHOC(dragSourceHOC(conn(null, mapDispatchToProps)(Card)));
