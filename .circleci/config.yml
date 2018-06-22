@@ -23,3 +23,4 @@ workflows:
     jobs:
       - serverapp
       - frontapp
+        type: approval
