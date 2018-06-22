@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm start
+      - run: nohup node node_modules/react-scripts/bin/react-scripts.js start &
       - run: npm run cypress:run
 workflows:
   version: 2
