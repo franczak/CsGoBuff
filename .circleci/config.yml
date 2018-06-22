@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:7
     steps:
       - run: git clone https://github.com/franczak/CsGoBuffServer.git
+      - run: cd CsGoBuffServer
       - run: npm install
       - run: npm start
   frontapp:
