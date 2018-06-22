@@ -10,13 +10,13 @@ jobs:
       - run: npm start
   build:
     working_directory: ~/tmp
-        docker:
-          - image: circleci/node:7
-        steps:
-          - run: git clone https://github.com/franczak/CsGoBuffServer.git
-          - run: npm install
-          - run: npm start
-          - run: npm run cypress:run
+    docker:
+      - image: circleci/node:7
+    steps:
+      - run: git clone https://github.com/franczak/CsGoBuffServer.git
+      - run: npm install
+      - run: npm start
+      - run: npm run cypress:run
 workflows:
   version: 2
   build_and_test:
