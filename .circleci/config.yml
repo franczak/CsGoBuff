@@ -8,7 +8,7 @@ jobs:
       - run: git clone https://github.com/franczak/CsGoBuffServer.git .
       - run: ls
       - run: npm install
-      - run: npm start
+      - run: nohup node src/index.js &
   frontapp:
     docker:
       - image: circleci/node:7
@@ -23,4 +23,5 @@ workflows:
     jobs:
       - serverapp
       - frontapp
-        type: approval
+        require:
+          - serverapp
