@@ -20,6 +20,7 @@ export default {
     }),
 };
 
+
 const Toast = () => (
   <div className="alert-box">
       User doesnt have public stats
