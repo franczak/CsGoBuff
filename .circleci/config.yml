@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  server:
+    working_directory: ~/tmp
+    docker:
+      - image: circleci/node:7
+    steps:
+      - run: git clone https://github.com/franczak/CsGoBuffServer.git
+      - run: npm install
+      - run: npm start
+  build:
+    working_directory: ~/tmp
+        docker:
+          - image: circleci/node:7
+        steps:
+          - run: git clone https://github.com/franczak/CsGoBuffServer.git
+          - run: npm install
+          - run: npm start
+          - run: npm run cypress:run
