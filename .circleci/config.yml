@@ -3,7 +3,7 @@ version: 2
 jobs:
   serverapp:
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:8
     steps:
       - run: git clone https://github.com/franczak/CsGoBuffServer.git .
       - run: ls
