@@ -1,27 +1,29 @@
 version: 2
 
 jobs:
-  serverapp:
-    docker:
-      - image: circleci/node:8
-    steps:
-      - run: git clone https://github.com/franczak/CsGoBuffServer.git .
-      - run: ls
-      - run: npm install
-      - run: nohup node src/index.js &
-  frontapp:
+  build:
     docker:
       - image: cypress/base
     steps:
-      - checkout
-      - run: npm install
-      - run: nohup node node_modules/react-scripts/bin/react-scripts.js start &
+      - run:
+        name: copy server
+        command: |
+          git clone https://github.com/franczak/CsGoBuffServer.git
+          cd CsGoBuffServer/
+          npm install
+      - run:
+        name: start server
+        command: |
+          cd CsGoBuffServer/
+          npm start
+        background: true
+      - run:
+        name: get front
+        command: |
+          checkout
+          npm install
+      - run:
+        name: start front in bg
+        command: npm start
+        background: true
       - run: npm run cypress:run
-workflows:
-  version: 2
-  build-test-and-deploy:
-    jobs:
-      - serverapp
-      - frontapp:
-          requires:
-            - serverapp
