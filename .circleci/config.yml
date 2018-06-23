@@ -21,3 +21,5 @@ jobs:
           command: npm start
           background: true
       - run: npm run cypress:run
+      - store_artifacts:
+          path: cypress/videos
