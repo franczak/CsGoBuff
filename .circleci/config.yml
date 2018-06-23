@@ -7,10 +7,10 @@ jobs:
     steps:
       - run: git clone https://github.com/franczak/CsGoBuffServer.git
       - run:
-        working_directory: ./CsGoBuffServer/
+        working_directory: "./CsGoBuffServer/"
         command: npm install
       - run:
-        working_directory: ./CsGoBuffServer/
+        working_directory: "./CsGoBuffServer/"
         command: npm strt
         background: true
       - run: checkout
