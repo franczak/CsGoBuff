@@ -9,10 +9,10 @@ jobs:
       - run:
         working_directory: ./CsGoBuffServer/
         command: npm install
-       - run:
-          working_directory: ./CsGoBuffServer/
-          command: npm strt
-          background: true
+      - run:
+        working_directory: ./CsGoBuffServer/
+        command: npm strt
+        background: true
       - run: checkout
       - run: npm install
       - run:
