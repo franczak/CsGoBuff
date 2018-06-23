@@ -7,15 +7,15 @@ jobs:
     steps:
       - run: git clone https://github.com/franczak/CsGoBuffServer.git
       - run:
-        working_directory: ./CsGoBuffServer/
-        command: 'npm install'
+          working_directory: ./CsGoBuffServer/
+          command: npm install
       - run:
-        working_directory: ./CsGoBuffServer/
-        command: 'npm start'
-        background: true
+          working_directory: ./CsGoBuffServer/
+          command: npm start
+          background: true
       - run: checkout
       - run: npm install
       - run:
-        command: 'npm start'
-        background: true
+          command: npm start
+          background: true
       - run: npm run cypress:run
