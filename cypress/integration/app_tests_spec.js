@@ -37,7 +37,7 @@ describe('App tests', function() {
   })
 
   it('Should show stats popup when card clicked', () => {
-    cy.get('.user-card').contains('Goku!').click({force: true})
+    cy.get('.user-card').contains('Goku!1').click({force: true})
     cy.get('.popup-content ').should('be.visible')
   })
 
