@@ -5,12 +5,14 @@ jobs:
     docker:
       - image: cypress/base
     steps:
-      - run: git clone https://github.com/franczak/CsGoBuffServer.git
       - run:
-          working_directory: ./CsGoBuffServer/
+          working_directory: ~/
+          command: git clone https://github.com/franczak/CsGoBuffServer.git
+      - run:
+          working_directory: ~/CsGoBuffServer/
           command: npm install
       - run:
-          working_directory: ./CsGoBuffServer/
+          working_directory: ~/CsGoBuffServer/
           command: npm start
           background: true
       - checkout
