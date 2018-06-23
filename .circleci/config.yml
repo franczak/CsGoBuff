@@ -6,24 +6,20 @@ jobs:
       - image: cypress/base
     steps:
       - run:
-        name: copy server
         command: |
           git clone https://github.com/franczak/CsGoBuffServer.git
           cd CsGoBuffServer/
           npm install
       - run:
-        name: start server
         command: |
           cd CsGoBuffServer/
           npm start
         background: true
       - run:
-        name: get front
         command: |
           checkout
           npm install
       - run:
-        name: start front in bg
         command: npm start
         background: true
       - run: npm run cypress:run
